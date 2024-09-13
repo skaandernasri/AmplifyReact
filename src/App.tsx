@@ -55,7 +55,7 @@ const App : React.FC<AppProps> = ({ signOut, user }) => {
 
   return (
     <div style={styles.container}>
-      <Heading level={1}>Hello {user.username}</Heading>
+      <Heading level={1}>Hello {user!.username}</Heading>
       <Button onClick={signOut}>Sign out</Button>
       <h2>Amplify Todos</h2>
       <input
