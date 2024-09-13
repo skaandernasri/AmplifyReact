@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "serviceConfiguration": {
+    "apiName": "amplifyreactskander",
+    "serviceName": "AppSync",
+    "defaultAuthType": {
+      "mode": "API_KEY",
+      "expirationTime": 7
+    }
+  }
+}
