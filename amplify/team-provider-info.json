@@ -35,6 +35,12 @@
     "categories": {
       "auth": {
         "amplifyreactskander1211512e": {}
+      },
+      "api": {
+        "amplifyreactskander": {}
+      },
+      "storage": {
+        "s354738b07": {}
       }
     }
   }
