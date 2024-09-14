@@ -10,12 +10,9 @@ import { type AuthUser } from "aws-amplify/auth";
 import { type UseAuthenticator } from "@aws-amplify/ui-react-core";
 import {
   Button,
-  Flex,
+ 
   Heading,
-  Image,
-  Text,
-  TextField,
-  View,
+
   withAuthenticator,
 } from '@aws-amplify/ui-react';
 type AppProps = {
