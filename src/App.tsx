@@ -8,7 +8,6 @@ import { type CreateTodoInput, type Todo } from './API';
 import '@aws-amplify/ui-react/styles.css';
 import { type AuthUser } from "aws-amplify/auth";
 import { type UseAuthenticator } from "@aws-amplify/ui-react-core";
-import { StorageError  } from 'aws-amplify/storage';
 import {
   Button,
   Flex,
@@ -41,10 +40,6 @@ const App : React.FC<AppProps> = ({ signOut, user }) => {
       });
       const todos = todoData.data.listTodos.items;
       await Promise.all(todos.map(async (note) => {
-        if (note.image) {
-          const url = await Storage.get(note.name);
-          note.image = url;
-        }
         return note;
       })
     );
