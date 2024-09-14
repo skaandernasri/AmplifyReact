@@ -342,6 +342,7 @@ export type ListTodosQuery = {
   listTodos?:  {
     __typename: "ModelTodoConnection",
     items:  Array< {
+      image: any;
       __typename: "Todo",
       id: string,
       name: string,

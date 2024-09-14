@@ -5,10 +5,20 @@ import { generateClient } from 'aws-amplify/api';
 import { createTodo } from './graphql/mutations';
 import { listTodos } from './graphql/queries';
 import { type CreateTodoInput, type Todo } from './API';
-import { withAuthenticator, Button, Heading } from '@aws-amplify/ui-react';
 import '@aws-amplify/ui-react/styles.css';
 import { type AuthUser } from "aws-amplify/auth";
 import { type UseAuthenticator } from "@aws-amplify/ui-react-core";
+import {  } from 'aws-amplify/storage';
+import {
+  Button,
+  Flex,
+  Heading,
+  Image,
+  Text,
+  TextField,
+  View,
+  withAuthenticator,
+} from '@aws-amplify/ui-react';
 type AppProps = {
   signOut?: UseAuthenticator["signOut"]; //() => void;
   user?: AuthUser;
@@ -30,12 +40,24 @@ const App : React.FC<AppProps> = ({ signOut, user }) => {
         query: listTodos,
       });
       const todos = todoData.data.listTodos.items;
+  
+      // Fetch image URLs for todos that have an image key
+      await Promise.all(
+        todos.map(async (note) => {
+          if (note.image) {
+            const url = await Storage.get(note.image); // Fetch the image URL from S3
+            note.image = url; // Replace the image key with the actual URL
+          }
+          return note;
+        })
+      );
+  
       setTodos(todos);
     } catch (err) {
-      console.log('error fetching todos',err);
+      console.log('error fetching todos', err);
     }
   }
-
+  
   async function addTodo() {
     try {
       if (!formState.name || !formState.description) return;
